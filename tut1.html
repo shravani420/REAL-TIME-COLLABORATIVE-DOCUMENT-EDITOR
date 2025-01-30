@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Collaborative Editor</title>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+    .editor-container {
+      width: 80%;
+      max-width: 800px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 16px;
+      resize: none;
+      outline: none;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    input {
+      margin-bottom: 10px;
+      padding: 8px;
+      font-size: 16px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="editor-container">
+    <h1>Real-Time Collaborative Editor</h1>
+    <input id="username" type="text" placeholder="Enter your username" />
+    <textarea id="editor" placeholder="Start typing..."></textarea>
+    <button onclick="saveContent()">Save</button>
+  </div>
+
+  <script>
+    const socket = io('http://localhost:5000');
+    const editor = document.getElementById('editor');
+    const username = document.getElementById('username');
+
+    // Listen for content updates from the server
+    socket.on('updateContent', (content) => {
+      editor.value = content;
+    });
+
+    // Emit changes to the server
+    editor.addEventListener('input', () => {
+      const content = editor.value;
+      socket.emit('editContent', content);
+    });
+
+    // Save content (just an example; requires backend to persist data)
+    function saveContent() {
+      alert(Content saved by ${username.value || 'Anonymous'});
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Collaborative Editor</title>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+    .editor-container {
+      width: 80%;
+      max-width: 800px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 16px;
+      resize: none;
+      outline: none;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    input {
+      margin-bottom: 10px;
+      padding: 8px;
+      font-size: 16px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="editor-container">
+    <h1>Real-Time Collaborative Editor</h1>
+    <input id="username" type="text" placeholder="Enter your username" />
+    <textarea id="editor" placeholder="Start typing..."></textarea>
+    <button onclick="saveContent()">Save</button>
+  </div>
+
+  <script>
+    const socket = io('http://localhost:5000');
+    const editor = document.getElementById('editor');
+    const username = document.getElementById('username');
+
+    // Listen for content updates from the server
+    socket.on('updateContent', (content) => {
+      editor.value = content;
+    });
+
+    // Emit changes to the server
+    editor.addEventListener('input', () => {
+      const content = editor.value;
+      socket.emit('editContent', content);
+    });
+
+    // Save content (just an example; requires backend to persist data)
+    function saveContent() {
+      alert(Content saved by ${username.value || 'Anonymous'});
+    }
+  </script>
+</body>
+</html>
