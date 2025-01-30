@@ -42,3 +42,6 @@ Edit
 const socket = io('http://localhost:5000');
 Connects to a WebSocket server at localhost:5000.
 Enables real-time bidirectional communication.
+
+OUTPUT:- 
+![Image](https://github.com/user-attachments/assets/2b81431e-8811-49ed-9cd0-c8f86f8f1f9e)
